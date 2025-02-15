@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21 Reasons Not to Love You, by Leomar Joshua (Poging Husband)</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f5e1ff;
+            overflow: hidden;
+        }
+        h1 {
+            color: #6a0dad;
+        }
+        .jar-container {
+            position: relative;
+            display: inline-block;
+        }
+        .jar {
+            width: 150px;
+            height: 200px;
+            background-image: url('images/flowers.JPG'); 
+            background-size: cover;
+            background-position: center;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: purple;
+            transform: rotate(-45deg);
+            opacity: 0.9;
+        }
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: purple;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
+            100% { transform: translateY(-250px) rotate(-45deg); opacity: 0; }
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #6a0dad;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .message-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+        }
+        .message {
+            font-size: 18px;
+            color: #333;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            width: 0;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: var(--text-width); }
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: black; }
+        }
+
+        /* Animation for last message */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>21 Reasons Not to Love You, by Leomar Joshua (Poging Husband)</h1>
+
+    <div class="jar-container">
+        <div class="jar" id="jar"></div>
+    </div>
+
+    <div class="message-container">
+        <p class="message" id="message"></p>
+    </div>
+
+    <button class="button" onclick="showMessage()">Tap to Get the Message</button>
+
+    <script>
+        const messages = [
+            "You are wifey-material, you've already weighed the things that are more complex",
+            "The term “Unfaithful” does not suit you",
+            "You're already married, to me, Leomar Joshua Vallena",
+            "You have a warm heart, especially towards elders",
+            "A good samaritan",
+            "You shall be the mother of my child",
+            "No several chances",
+            "I kidnapped my soulmate, and it is you",
+            "Had a hard life = Gets a tough mind",
+            "Baby Aki, I love you so much! I hope nakaabot ka hanggang dito ‘coz I will regret using this one chance to talk to you >:)",
+            "My standards",
+            "You have the power to play someone's life but don't want to",
+            "Ehhh, is writing these reasons enough to prove that you are loveable? Certainly!",
+            "lowkey smart-ass",
+            "SARAP MO AkiN k4 Lang PlssssSss",
+            "Willing to cook for someone whom you love",
+            "Overflowing with love, too much to handle",
+            "She speaks in ways that even silence listens",
+            "You make ordinary moments unforgettable",
+        ];
+
+        let index = 0;
+
+        function showMessage() {
+            const messageElement = document.getElementById("message");
+            
+            if (index < messages.length) {
+                messageElement.innerText = messages[index];
+                messageElement.style.setProperty('--text-width', messageElement.scrollWidth + 'px');
+                messageElement.style.width = "0";
+                messageElement.style.borderRight = "2px solid black";
+                messageElement.style.animation = "none";
+                
+                setTimeout(() => {
+                    messageElement.style.animation = "typing 2s steps(40, end) forwards, blink 0.75s step-end infinite";
+                }, 5);
+                
+                index++;
+
+                
+                createMultipleHearts();
+            } else {
+                messageElement.innerText = "I didn’t need a holiday to celebrate you, but here’s a little surprise to show you how much I adore you, today and always!";
+                messageElement.style.width = "auto"; 
+                messageElement.style.borderRight = "none";  
+                messageElement.style.animation = "fadeIn 2s ease-in-out, bounce 1s infinite alternate";
+            }
+        }
+
+        function createMultipleHearts() {
+            const container = document.body; 
+
+            for (let i = 0; i < 5; i++) { // 
+                const heart = document.createElement("div");
+                heart.classList.add("heart");
+
+                
+                let randomX = Math.random() * window.innerWidth; 
+                let randomY = Math.random() * window.innerHeight / 2; 
+                
+                heart.style.left = `${randomX}px`;
+                heart.style.top = `${window.innerHeight - randomY}px`;
+                heart.style.animation = `floatUp ${Math.random() * 2 + 2}s ease-in-out forwards`;
+
+                container.appendChild(heart);
+                setTimeout(() => {
+                    heart.remove();
+                }, 3000);
+            }
+        }
+    </script>
+
+</body>
+</html>
